@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Все сообщества{% endblock %}
+{% block header %}Все сообщества{% endblock %}
+{% block content %}
+<h1 align=center>Все сообщества</h1>
+    {% for group in groups %} 
+    <p>
+      Сообщество: <a href="{% url 'group_list' %}">"{{ group.title }}"</a>
+      <br>Описание: {{ group.description }}
+    </p>
+    {% endfor %}
+{% endblock %} 

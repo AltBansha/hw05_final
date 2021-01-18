@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Страница поста{% endblock %}
+{% block header %}Последние обновления на сайте{% endblock %}
+{% block content %}
+
+<main role="main" class="container">
+    <div class="row">
+            <!-- Информация об авторе -->
+            {% include "posts_author.html" %}
+        <div class="col-md-9">
+                <!-- Пост --> 
+
+            {% include "post_item.html" with post=post %}
+            {% for field in form %}
+                {% include "posts/comments.html"  %}
+            {% endfor %} 
+            
+        </div>
+    </div>
+</main> 
+{% endblock %}

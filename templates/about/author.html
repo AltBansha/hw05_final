@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Об авторе проекта{% endblock %}
+{% block content %}
+{% load user_filters %}
+{% load static %}
+  <main role="main" class="container">
+      <div class="row">
+          <!-- Левый вспомогательный блок -->
+          <div class="col-md-3 mb-3 mt-1">
+              <div class="card">
+                  <div class="card-body">
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                              <div class="h3">
+                                  Об авторе
+                              </div> 
+                          </li>
+                          <li class="list-group-item">
+                              <div class="h6 text-muted">
+                                  Всё должно быть лаконично и просто...<br>
+                                  <a href="https://github.com/AltBansha" target="_blank">Мой Github</a>
+                              </div>
+                          </li>
+                      </ul>                                               
+                  </div>                    
+              </div>                
+          </div>
+          <!-- Тело страницы -->
+          <div class="col-md-9">
+              <div class="card-body">                    
+                  <div class="card-text">
+                      <p>Пограммирование - новая сфера деятельности для меня. А всё новое - это интересно.</p>
+                      <p>На изучение новой сферы меня поддотлкнула ситуация в мире. Это же и является основным вдохновлением</p>
+                      <p>Но также мне свегда помогают друзья, и конечно же котейка (куда без котеек!). 
+                          Мой верный друг и товарищь всегда поддерживает меня лёжа за ноутбуком.</p><br>
+                      <img src="{% static "images/Bars.jpg" %}" alt="Bars" style="width: 350px; height: 350px">
+                      <img src="{% static "images/Simple.jpg" %}" alt="Simple" style="width: 250px; height: 200px">
+                  </div>                    
+              </div>                
+          </div>            
+      </div>        
+  </main>
+{% endblock %}
