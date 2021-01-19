@@ -38,9 +38,7 @@ class PostModelTest(TestCase):
         for value, expected in field_verbose_name.items():
             with self.subTest(value=value):
                 self.assertEqual(
-                    post._meta.get_field(value).verbose_name, expected,
-                    f'Ошибка в {PostModelTest.test_verbose_name.__name__},'
-                    ' проверьте verbose_name в Post')
+                    post._meta.get_field(value).verbose_name, expected)
 
     def test_verbose_name_group(self):
         """Тестуруем verbose_name в модели Group"""
@@ -53,9 +51,7 @@ class PostModelTest(TestCase):
         for value, expected in field_verbose_name.items():
             with self.subTest(value=value):
                 self.assertEqual(
-                    group._meta.get_field(value).verbose_name, expected,
-                    f'Ошибка в {PostModelTest.test_verbose_name.__name__},'
-                    ' проверьте verbose_name в Group')
+                    group._meta.get_field(value).verbose_name, expected)
 
     def test_helps_text_post(self):
         """Тестируем helps_text в модели Post"""
@@ -69,9 +65,7 @@ class PostModelTest(TestCase):
         for value, expected in field_help_text.items():
             with self.subTest(value=value):
                 self.assertEqual(
-                    post._meta.get_field(value).help_text, expected,
-                    f'Ошибка в {PostModelTest.test_helps_text.__name__},'
-                    ' проверьте help_text в Post')
+                    post._meta.get_field(value).help_text, expected)
 
     def test_helps_text_group(self):
         """Тестируем helps_text в модели Group"""
@@ -85,9 +79,7 @@ class PostModelTest(TestCase):
         for value, expected in field_help_text.items():
             with self.subTest(value=value):
                 self.assertEqual(
-                    group._meta.get_field(value).help_text, expected,
-                    f'Ошибка в {PostModelTest.test_helps_text.__name__},'
-                    ' проверьте help_text в Group')
+                    group._meta.get_field(value).help_text, expected)
 
     def test_group_str_value(self):
         """

@@ -9,11 +9,8 @@
             {% include "posts_author.html" %}
         <div class="col-md-9">
                 <!-- Пост --> 
-
             {% include "post_item.html" with post=post %}
-            {% for field in form %}
-                {% include "posts/comments.html"  %}
-            {% endfor %} 
+            {% include "comments.html" %}
             
         </div>
     </div>

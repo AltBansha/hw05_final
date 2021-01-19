@@ -14,12 +14,6 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('group', 'text', 'image')
 
-    def clean_text(self):
-        data = self.cleaned_data['text']
-        if data == '':
-            raise forms.ValidationError('Поле не должно быть пустым.')
-        return data
-
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -28,9 +22,3 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'text': forms.Textarea(attrs={'cols': 3, 'rows': 2}),
         }
-
-    def clean_text(self):
-        data = self.cleaned_data['text']
-        if data == '':
-            raise forms.ValidationError('Комментарий не может быть пустым')
-        return data

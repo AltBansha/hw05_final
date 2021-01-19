@@ -46,13 +46,17 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, blank=False, null=False,
+    post = models.ForeignKey(Post,
                              on_delete=models.CASCADE,
                              related_name='comments',)
-    author = models.ForeignKey(User, blank=False, null=False,
+    author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
+                               blank=False,
+                               null=False,
                                related_name='comments')
-    text = models.TextField(blank=False, null=False,
+    text = models.TextField(verbose_name="Поле для комментария",
+                            blank=False,
+                            null=False,
                             help_text='Ваш комментарий')
     created = models.DateTimeField(auto_now_add=True)
 
@@ -60,12 +64,18 @@ class Comment(models.Model):
 class Follow(models.Model):
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE,
-                             blank=True,
-                             null=True,
+                             blank=False,
+                             null=False,
                              related_name="follower")
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
                                related_name="following")
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["user", "author"],
+                                    name="unique_follow")
+        ]
 
     def __str__(self):
         return self.author.username

@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Подписчики{% endblock %}
-{% block header %}Подписчики{% endblock %}
+{% block title %}Избранные авторы{% endblock %}
+{% block header %}Избранные авторы{% endblock %}
 {% block content %}
 
     <div class="container">
 
-      {% include "menu.html" with index=True %}
+      {% include "menu.html" with follow=True %}
 
-        <h1>Подписчики<h1>
+        <h1>Избранные авторы<h1>
         <!-- Вывод ленты записей -->
 
                 {% for post in page %}

@@ -58,7 +58,7 @@ class PostURLTests(TestCase):
             '/testuser1/1/': 200,
             '/testuser1/1/edit/': 200,
             '/testuser2/1/edit/': 404,
-            '/testuser2/1/comment': 302,
+            '/testuser2/1/comment': 404,
         }
         for key, value in urls.items():
             response = self.authorized_client_1.get(key)

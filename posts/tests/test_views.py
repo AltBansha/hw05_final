@@ -179,7 +179,9 @@ class PaginatorViewsTest(TestCase):
         self.assertEqual(len(response.context.get('page').object_list), 3)
 
 
-# класс тестирования кеширования страниц
+"""Тестирование кеширования страниц"""
+
+
 class CacheViewTest(TestCase):
 
     @classmethod
@@ -214,16 +216,17 @@ class CacheViewTest(TestCase):
         self.assertEqual(context_len, post_len)
 
 
-# класс тестирования подписи пользователей друг на друга
+"""Тестирование подписи пользователей друг на друга"""
+
+
 class FollowUserTest(TestCase):
 
     def setUp(self):
         User = get_user_model()
-        # создадим 2х пользователей.
+
         self.auth_user = User.objects.create(username='FollowerUser')
         self.author_post = User.objects.create(username='AuthorUser')
 
-        # создадим 2 записи на нашем сайте
         Post.objects.create(text='Тест',
                             author=self.author_post)
 
@@ -243,8 +246,10 @@ class FollowUserTest(TestCase):
         self.auth_client_follower.post(
             reverse('profile_follow', kwargs={'username': self.author_post})
         )
-        self.assertTrue(Follow.objects.filter(user=self.auth_user,
-                                              author=self.author_post))
+        self.assertTrue(
+            Follow.objects.filter(user=self.auth_user,
+                                  author=self.author_post).exists()
+        )
 
     def test_authorized_user_unfollow(self):
         """Тестирование отписывания от пользователей"""
@@ -257,11 +262,11 @@ class FollowUserTest(TestCase):
 
     def test_post_added_to_follow(self):
         """Тестирование на правильность работы подписи на пользователя"""
-        # подпишем пользователя на auth_client_author
+
         self.auth_client_follower.post(
             reverse('profile_follow', kwargs={'username': self.author_post})
         )
-        # получим все посты подписанного пользователя
+
         posts = Post.objects.filter(author__following__user=self.auth_user)
 
         response_follower = self.auth_client_follower.get(
@@ -282,7 +287,9 @@ class FollowUserTest(TestCase):
                          response_author.context['paginator'].object_list)
 
 
-# Класс тестирования постов содержащих в себе изобращение
+"""Тестирование постов содержащих в себе изобращение"""
+
+
 class PostImageViewTest(TestCase):
 
     @classmethod
