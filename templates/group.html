@@ -5,11 +5,11 @@
  
     <h1>{{ group.title }}</h1> 
     <p> 
-      {{ group.description }} 
+        {{ group.description }} 
     </p>
 
     {% for post in page %}  
-      {% include "post_item.html" with post=post %} 
+        {% include "posts/includes/post_item.html" with post=post %} 
     {% endfor %}
     
     {% include "paginator.html" %}

@@ -10,9 +10,6 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = "-пусто-"
 
 
-admin.site.register(Post, PostAdmin)
-
-
 class GroupAdmin(admin.ModelAdmin):
     list_display = ("title", "slug", "description")
     search_fields = ("title",)
@@ -21,16 +18,10 @@ class GroupAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
 
-admin.site.register(Group, GroupAdmin)
-
-
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('post', 'author', 'text', 'created')
     search_fields = ('author', 'text')
     empty_value_display = '-пусто-'
-
-
-admin.site.register(Comment, CommentAdmin)
 
 
 class FollowAdmin(admin.ModelAdmin):
@@ -39,4 +30,7 @@ class FollowAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
+admin.site.register(Post, PostAdmin)
+admin.site.register(Group, GroupAdmin)
+admin.site.register(Comment, CommentAdmin)
 admin.site.register(Follow, FollowAdmin)

@@ -79,10 +79,10 @@ def profile(request, username):
 
 
 def post_view(request, username, post_id):
-    form = CommentForm(request.POST or None)
     post = get_object_or_404(Post, id=post_id, author__username=username)
     count = Post.objects.filter(author=post.author).count()
     comments = post.comments.all()
+    form = CommentForm()
     context = {
         "post": post,
         "author": post.author,
@@ -160,8 +160,6 @@ def profile_unfollow(request, username):
 
 
 def page_not_found(request, exception):
-    # Переменная exception содержит отладочную информацию,
-    # выводить её в шаблон пользователской страницы 404 мы не станем
     return render(
         request,
         "misc/404.html",

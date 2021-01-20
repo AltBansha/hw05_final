@@ -1,6 +1,8 @@
 import shutil
 import tempfile
 
+from datetime import datetime, timedelta
+
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -28,11 +30,14 @@ class PostPagesTests(TestCase):
             ) for number in range(1, 3)
         ])
 
+        now = datetime.now()
+
         Post.objects.bulk_create([
             Post(
                 text=f'Тестовая запись {number}',
                 author=cls.user_author,
                 group=Group.objects.get(pk=number),
+                pub_date=now + timedelta(seconds=number)
             ) for number in range(1, 3)
         ])
 
@@ -179,10 +184,8 @@ class PaginatorViewsTest(TestCase):
         self.assertEqual(len(response.context.get('page').object_list), 3)
 
 
-"""Тестирование кеширования страниц"""
-
-
 class CacheViewTest(TestCase):
+    """Тестирование кеширования страниц"""
 
     @classmethod
     def setUpClass(cls):
@@ -216,10 +219,8 @@ class CacheViewTest(TestCase):
         self.assertEqual(context_len, post_len)
 
 
-"""Тестирование подписи пользователей друг на друга"""
-
-
 class FollowUserTest(TestCase):
+    """Тестирование подписи пользователей друг на друга"""
 
     def setUp(self):
         User = get_user_model()
@@ -253,7 +254,7 @@ class FollowUserTest(TestCase):
 
     def test_authorized_user_unfollow(self):
         """Тестирование отписывания от пользователей"""
-        self.auth_client_follower.get(
+        self.auth_client_follower.post(
             reverse('profile_unfollow', kwargs={'username': self.author_post})
         )
 
@@ -287,10 +288,8 @@ class FollowUserTest(TestCase):
                          response_author.context['paginator'].object_list)
 
 
-"""Тестирование постов содержащих в себе изобращение"""
-
-
 class PostImageViewTest(TestCase):
+    """Тестирование постов содержащих в себе изобращение"""
 
     @classmethod
     def setUpClass(cls):

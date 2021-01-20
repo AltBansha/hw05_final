@@ -12,14 +12,13 @@
         <!-- Вывод ленты записей -->
         {% cache 20 index_page page %}
                 {% for post in page %}
-                    {% include "post_item.html" with post=post %}
+                    {% include "posts/includes/post_item.html" with post=post %}
                 {% endfor %}
         {% endcache %}
     
-        <!-- Вывод паджинатора -->
-        {% if page.has_other_pages %}
+        <!-- Вывод паджинатора -->      
             {% include "paginator.html" with items=page paginator=paginator%}
-        {% endif %}
+
 
     </div>
 

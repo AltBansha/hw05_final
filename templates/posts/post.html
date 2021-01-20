@@ -6,11 +6,11 @@
 <main role="main" class="container">
     <div class="row">
             <!-- Информация об авторе -->
-            {% include "posts_author.html" %}
+            {% include "posts/includes/posts_author.html" %}
         <div class="col-md-9">
                 <!-- Пост --> 
-            {% include "post_item.html" with post=post %}
-            {% include "comments.html" %}
+            {% include "posts/includes/post_item.html" with post=post %}
+            {% include "posts/includes/comments.html" %}
             
         </div>
     </div>
