@@ -1,8 +1,6 @@
 import shutil
 import tempfile
 
-from datetime import datetime, timedelta
-
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -30,16 +28,11 @@ class PostPagesTests(TestCase):
             ) for number in range(1, 3)
         ])
 
-        now = datetime.now()
-
-        Post.objects.bulk_create([
-            Post(
-                text=f'Тестовая запись {number}',
-                author=cls.user_author,
-                group=Group.objects.get(pk=number),
-                pub_date=now + timedelta(seconds=number)
-            ) for number in range(1, 3)
-        ])
+        cls.post = Post.objects.create(
+            text='Тестовая запись 1',
+            author=cls.user_author,
+            group=Group.objects.get(title='Тестовая группа 1'),
+        )
 
     def setUp(self):
         self.guest_client = Client()
