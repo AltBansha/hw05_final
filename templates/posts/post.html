@@ -5,12 +5,31 @@
 
 <main role="main" class="container">
     <div class="row">
+        <div class="col-md-3 mb-3 mt-1">                    
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
             <!-- Информация об авторе -->
             {% include "posts/includes/posts_author.html" %}
-        <div class="col-md-9">
+                    </li>
+                </ul>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                <div class="h6 text-muted">
+                     
+                <!-- Количество записей --> 
+                Записей: {{ count }}
+ 
+                </div>
+                </li>
+            </ul>
+            </div>
+        </div>
+            <div class="col-md-9">
                 <!-- Пост --> 
             {% include "posts/includes/post_item.html" with post=post %}
             {% include "posts/includes/comments.html" %}
+            
             
         </div>
     </div>

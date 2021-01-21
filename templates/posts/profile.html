@@ -5,8 +5,43 @@
 {% load thumbnail %}
 <main role="main" class="container">
     <div class="row">
+        <div class="col-md-3 mb-3 mt-1">                    
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
             <!-- Информация об авторе -->
-        {% include "posts/includes/posts_author.html" %}           
+            {% include "posts/includes/posts_author.html" %}
+                    </li>
+                </ul>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                <div class="h6 text-muted">
+                     
+                <!-- Количество записей --> 
+                Записей: {{ post_count }} 
+                </div>
+                    </li>
+                </ul>
+                {% if author != user and user.is_authenticated %} 
+                <li class="list-group-item"> 
+                    {% if following %} 
+                        <a class="btn btn-lg btn-light"  
+                        href="{% url 'profile_unfollow' author %}" role="button">  
+                        Отписаться  
+                        </a> 
+                    {% else %} 
+                        <a class="btn btn-lg btn-primary" 
+                        href="{% url 'profile_follow' author %}" role="button"> 
+                        Подписаться   
+                        </a> 
+                    {% endif %} 
+                </li>         
+                {% endif %}
+
+        </div>
+    </div>
+
+
             <div class="col-md-9">                
                 {% for post in page %}
                 <!-- Начало блока с отдельным постом --> 

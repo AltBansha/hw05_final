@@ -60,8 +60,6 @@ class Comment(models.Model):
 class Follow(models.Model):
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE,
-                             blank=False,
-                             null=False,
                              related_name="follower")
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,

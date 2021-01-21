@@ -13,7 +13,7 @@ class NewPost_FormTest(TestCase):
         cls.group = Group.objects.create(title='Тестовая группа',
                                          slug='test-group',
                                          description='Описание')
-        # создадим авторизованного пользователя
+
         cls.authorized_client = Client()
         cls.authorized_client.force_login(cls.user)
 
@@ -60,7 +60,6 @@ class PostEdit_FormTest(TestCase):
                                        author=cls.user,
                                        group=cls.group)
 
-        # создадим авторизованного пользователя
         cls.authorized_client = Client()
         cls.authorized_client.force_login(cls.user)
 

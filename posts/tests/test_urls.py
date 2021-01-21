@@ -9,7 +9,7 @@ class PostURLTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # создание двух пользователей
+
         User = get_user_model()
         cls.user_author_1 = User.objects.create(username='testuser1')
         cls.user_author_2 = User.objects.create(username='testuser2')
@@ -23,9 +23,9 @@ class PostURLTests(TestCase):
                                        group=cls.group)
 
     def setUp(self):
-        # Неавторизованный клиент
+
         self.guest_client = Client()
-        # Создаем двух авторизованных клиентов
+
         self.authorized_client_1 = Client()
         self.authorized_client_1.force_login(self.user_author_1)
 
@@ -124,12 +124,12 @@ class PostURLTests(TestCase):
         )
 
 
-# класс тестирования возврата кода 404
 class CustomErrorHandlerTests(TestCase):
+    """Тестирование возврата кода 404"""
 
     @classmethod
     def setUp(self):
-        # Неавторизованный клиент
+
         self.guest_client = Client()
 
     def test_handler_renders_template_response(self):

@@ -56,9 +56,10 @@ class PostPagesTests(TestCase):
     @override_settings(
         CACHES={
             'default': {
-                'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}
+                'BACKEND': 'django.core.cache.backends.dummy.DummyCache'
             }
-        )
+        }
+    )
     def test_context_in_index_page(self):
         """Шаблон index сформирован с правильным контекстом."""
         response = self.guest_client.get(reverse('index'))
@@ -129,24 +130,6 @@ class PostPagesTests(TestCase):
         posts_collection = set(posts_out_of_group)
         response_paginator = response.context.get('paginator').object_list
         self.assertTrue(posts_collection.isdisjoint(response_paginator))
-
-
-class StaticViewsTests(TestCase):
-
-    def setUp(self):
-        self.guest_user = Client()
-
-    def test_templates_static_pages(self):
-        """Тестирование шаблонов для статических страниц """
-        templates_url_names = {
-            'about/author.html': reverse('about:author'),
-            'about/tech.html': reverse('about:tech'),
-        }
-
-        for template, reverse_name in templates_url_names.items():
-            with self.subTest(reverse_name=reverse_name):
-                response = self.guest_user.get(reverse_name)
-                self.assertTemplateUsed(response, template)
 
 
 class PaginatorViewsTest(TestCase):
@@ -227,11 +210,9 @@ class FollowUserTest(TestCase):
         Post.objects.create(text='Тест',
                             author=self.auth_user)
 
-        # авторизуем подписчика
         self.auth_client_follower = Client()
         self.auth_client_follower.force_login(self.auth_user)
 
-        # авторизуем владельца записи на нашем сайте
         self.auth_client_author = Client()
         self.auth_client_author.force_login(self.author_post)
 
